@@ -6,7 +6,7 @@ class Payment:
         self.duplicates_delete = 0
         
         
-        
+     #мэджик метод лоя применения унарного минуса   
     def __neg__(self):
         self.duplicates_delete = self.data.duplicated().sum()
         self.data = self.data.drop_duplicates(keep='first')
@@ -17,17 +17,18 @@ class Payment:
     # метода для фильтровки данных файла
     def sorting(self):
         self.data = pd.read_csv('var5.csv')
-        
+
+        #убираем дубликаты с файла
         -self
         
-        # Разделение датасета на два датасета
+        #разделение датасета на два датасета
         filtered1_df = self.data[self.data['Место оплаты'] == 'Минск']
         filtered2_df = self.data[self.data['Место оплаты'] != 'Минск']
         
         print(filtered1_df)
         print(filtered2_df)
         
-        # Создание файлов после фильтровки
+        #создание файлов после фильтровки
         filtered1_df.to_csv('output1.csv', index=False, encoding='utf-8')
         filtered2_df.to_csv('output2.csv', index=False, encoding='utf-8')
         
